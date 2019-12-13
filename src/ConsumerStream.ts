@@ -1,10 +1,6 @@
 import { Consumer, ConsumerConfig, Kafka } from "kafkajs";
 import { Readable } from "stream";
 
-class TooMuchError extends Error {
-  message: "Too much data";
-}
-
 export class ConsumerStream extends Readable {
   constructor(
     kafka: Kafka,
@@ -45,12 +41,6 @@ export class ConsumerStream extends Readable {
         }
         if (this.paused) {
           this.paused = false;
-          try {
-            this.consumer.resume([{ topic: this.topic.topic }]);
-          } catch (e) {
-            // consumer might be stopped for some reasons, and calling resume will throw error
-            await this.run();
-          }
         }
       } catch (e) {
         this.destroy(e);
@@ -60,13 +50,20 @@ export class ConsumerStream extends Readable {
 
   private async run() {
     await this.consumer.run({
+      eachBatchAutoResolve: false,
       eachBatch: async ({ batch, resolveOffset, heartbeat }) => {
+        if (this.paused) {
+          return;
+        }
         for (const message of batch.messages) {
+          if (this.paused) {
+            break;
+          }
           const continueToPush = this.push(message.value);
           resolveOffset(message.offset);
           await heartbeat();
           if (!continueToPush) {
-            throw new TooMuchError();
+            this.paused = true;
           }
         }
       }

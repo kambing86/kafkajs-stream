@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/kambing86/kafkajs-stream/compare/v0.0.1...v0.0.2) (2019-12-13)
+
+
+### Bug Fixes
+
+* add typescript definition ([bb71ebc](https://github.com/kambing86/kafkajs-stream/commit/bb71ebcfb4c63d69dbdf9156154fc8d1fab1f2ac))
+
 ### 0.0.1 (2019-12-13)
 
 

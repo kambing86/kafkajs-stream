@@ -32,5 +32,8 @@
     "kafkajs": "^1.11.0",
     "standard-version": "^7.0.1",
     "typescript": "^3.7.3"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

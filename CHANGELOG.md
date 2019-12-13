@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/kambing86/kafkajs-stream/compare/v0.0.3...v0.0.4) (2019-12-13)
+
+
+### Bug Fixes
+
+* use paused flag instead of error ([82b341b](https://github.com/kambing86/kafkajs-stream/commit/82b341bbdc70342d4aa98f3536be53ae3fd54696))
+
 ### [0.0.3](https://github.com/kambing86/kafkajs-stream/compare/v0.0.2...v0.0.3) (2019-12-13)
 
 

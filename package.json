@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/kambing86/kafkajs-stream#readme",
   "peerDependencies": {
-    "kafka": "^1.11.0"
+    "kafkajs": "^1.11.0"
   },
   "devDependencies": {
     "@types/node": "^12.12.17",

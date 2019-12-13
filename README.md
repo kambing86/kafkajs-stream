@@ -2,6 +2,18 @@
 
 tested in Node.js v12
 
+## How to use
+
+```sh
+yarn add kafkajs-stream
+```
+
+```sh
+npm install kafkajs-stream
+```
+
+## Example
+
 ```ts
 import fs from "fs";
 import http from "http";

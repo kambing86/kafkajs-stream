@@ -1,0 +1,36 @@
+{
+  "name": "kafkajs-stream",
+  "version": "0.0.0",
+  "description": "Stream for kafkajs",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc",
+    "build:strict": "yarn build --noImplicitAny",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kambing86/kafkajs-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "kafka",
+    "kafkajs"
+  ],
+  "author": "Chua Kang Ming",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kambing86/kafkajs-stream/issues"
+  },
+  "homepage": "https://github.com/kambing86/kafkajs-stream#readme",
+  "peerDependencies": {
+    "kafka": "^1.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.17",
+    "kafkajs": "^1.11.0",
+    "standard-version": "^7.0.1",
+    "typescript": "^3.7.3"
+  }
+}

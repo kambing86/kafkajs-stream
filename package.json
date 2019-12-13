@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "tsc",
+    "build": "tsc --declaration",
     "build:strict": "yarn build --noImplicitAny",
     "release": "standard-version"
   },

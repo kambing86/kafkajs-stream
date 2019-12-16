@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "esnext",
+    // "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "module",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"],
+      "../*": ["src/*", "dist/*"]
+    },
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "strictNullChecks": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*"]
+}

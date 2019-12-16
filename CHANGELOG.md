@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/kambing86/kafkajs-stream/compare/v0.0.5...v0.0.6) (2019-12-16)
+
+
+### Bug Fixes
+
+* add module support ([a524874](https://github.com/kambing86/kafkajs-stream/commit/a524874e8fefdb401fc6702e06614b062fc19043))
+
 ### [0.0.5](https://github.com/kambing86/kafkajs-stream/compare/v0.0.4...v0.0.5) (2019-12-16)
 
 

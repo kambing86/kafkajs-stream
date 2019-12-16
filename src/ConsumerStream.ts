@@ -34,6 +34,9 @@ export class ConsumerStream extends Readable {
           this.connected = true;
           await this.consumer.connect();
           await this.consumer.subscribe(this.topic);
+          this.consumer.on("consumer.crash", err => {
+            this.destroy(err);
+          });
         }
         if (!this.started) {
           this.started = true;

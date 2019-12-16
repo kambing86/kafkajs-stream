@@ -15,7 +15,8 @@
     },
     "typeRoots": ["node_modules/@types", "src/types"],
     "strictNullChecks": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "removeComments": true
   },
   "include": ["src/**/*"]
 }

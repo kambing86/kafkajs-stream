@@ -1,5 +1,5 @@
-import { CompressionTypes, Kafka, Producer, ProducerConfig } from "kafkajs";
-import { Writable } from "stream";
+import { CompressionTypes, Kafka, Producer, ProducerConfig } from 'kafkajs';
+import { Writable } from 'stream';
 
 export class ProducerStream extends Writable {
   constructor(
@@ -8,7 +8,7 @@ export class ProducerStream extends Writable {
       config?: ProducerConfig;
       compression?: CompressionTypes;
       topic: string;
-    }
+    },
   ) {
     super();
     this.producer = kafka.producer(options.config);
@@ -28,12 +28,12 @@ export class ProducerStream extends Writable {
   write(
     value: Uint8Array | Buffer | string,
     encoding?: string | ((error: Error | null | undefined) => void),
-    callback?: (error: Error | null | undefined) => void
+    callback?: (error: Error | null | undefined) => void,
   ): boolean {
     if (encoding === undefined) {
       return super.write(value);
     }
-    if (typeof encoding === "string") {
+    if (typeof encoding === 'string') {
       return super.write(value, encoding, callback);
     }
     return super.write(value, encoding);
@@ -41,7 +41,7 @@ export class ProducerStream extends Writable {
 
   _writev(
     chunks: { chunk: Uint8Array | Buffer | string; encoding: string }[],
-    callback: (error?: Error | null) => void
+    callback: (error?: Error | null) => void,
   ) {
     (async () => {
       try {
@@ -53,7 +53,7 @@ export class ProducerStream extends Writable {
           topic: this.topic,
           compression: this.compression,
           // @ts-ignore Buffer.from with Uint8Array | Buffer | string has issue
-          messages: chunks.map(({ chunk }) => ({ value: Buffer.from(chunk) }))
+          messages: chunks.map(({ chunk }) => ({ value: Buffer.from(chunk) })),
         });
         callback(null);
       } catch (e) {

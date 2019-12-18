@@ -1,2 +1,2 @@
-export { ConsumerStream } from "./ConsumerStream";
-export { ProducerStream } from "./ProducerStream";
+export { ConsumerStream } from './ConsumerStream';
+export { ProducerStream } from './ProducerStream';

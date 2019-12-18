@@ -1,5 +1,5 @@
-import { Consumer, ConsumerConfig, Kafka } from "kafkajs";
-import { Readable } from "stream";
+import { Consumer, ConsumerConfig, Kafka } from 'kafkajs';
+import { Readable } from 'stream';
 
 export class ConsumerStream extends Readable {
   constructor(
@@ -7,17 +7,20 @@ export class ConsumerStream extends Readable {
     options: {
       config?: ConsumerConfig;
       topic: { topic: string; fromBeginning?: boolean };
-    }
+    },
   ) {
     super();
-    this.consumer = kafka.consumer(options.config);
+    this.kafka = kafka;
+    this.config = options.config;
     this.topic = options.topic;
-    this.connected = false;
-    this.started = false;
-    this.paused = false;
+    this.init();
   }
 
   private consumer: Consumer;
+
+  private kafka: Kafka;
+
+  private config?: ConsumerConfig;
 
   private topic: { topic: string; fromBeginning?: boolean };
 
@@ -27,29 +30,44 @@ export class ConsumerStream extends Readable {
 
   private paused: boolean;
 
+  private init() {
+    this.connected = false;
+    this.started = false;
+    this.paused = false;
+  }
+
   _read() {
     (async () => {
       try {
-        if (!this.connected) {
-          this.connected = true;
-          await this.consumer.connect();
-          await this.consumer.subscribe(this.topic);
-          this.consumer.on("consumer.crash", err => {
-            this.destroy(err);
-          });
-        }
-        if (!this.started) {
-          this.started = true;
-          await this.run();
-        }
-        if (this.paused) {
-          this.paused = false;
-        }
+        await this.start();
       } catch (e) {
         this.destroy(e);
       }
     })();
   }
+
+  private async start() {
+    if (!this.connected) {
+      this.connected = true;
+      this.consumer = this.kafka.consumer(this.config);
+      await this.consumer.connect();
+      await this.consumer.subscribe(this.topic);
+      this.consumer.on('consumer.crash', this.onCrash);
+    }
+    if (!this.started) {
+      this.started = true;
+      await this.run();
+    }
+    if (this.paused) {
+      this.paused = false;
+    }
+  }
+
+  private onCrash = async (err: Error) => {
+    console.error(err);
+    this.init();
+    await this.start();
+  };
 
   private async run() {
     await this.consumer.run({
@@ -69,7 +87,7 @@ export class ConsumerStream extends Readable {
             this.paused = true;
           }
         }
-      }
+      },
     });
   }
 

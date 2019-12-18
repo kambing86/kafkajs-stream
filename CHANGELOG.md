@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/kambing86/kafkajs-stream/compare/v0.0.6...v0.0.7) (2019-12-18)
+
+
+### Bug Fixes
+
+* add crash retry for ConsumerStream ([a583544](https://github.com/kambing86/kafkajs-stream/commit/a583544ac4566a5a1fbe075ea16eba082a44b668))
+
 ### [0.0.6](https://github.com/kambing86/kafkajs-stream/compare/v0.0.5...v0.0.6) (2019-12-16)
 
 

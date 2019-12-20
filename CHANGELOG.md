@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/kambing86/kafkajs-stream/compare/v0.0.9...v0.0.10) (2019-12-20)
+
+
+### Features
+
+* add transform/highWatermark to object stream ([cdc7f5e](https://github.com/kambing86/kafkajs-stream/commit/cdc7f5eebdc1209dc84184430207fd6289814976))
+
 ### [0.0.9](https://github.com/kambing86/kafkajs-stream/compare/v0.0.8...v0.0.9) (2019-12-20)
 
 

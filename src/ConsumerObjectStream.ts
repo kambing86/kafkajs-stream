@@ -1,18 +1,18 @@
 import { Consumer, ConsumerConfig, Kafka } from 'kafkajs';
 import { Readable } from 'stream';
 
+interface ConsumerObjectStreamOptions {
+  config?: ConsumerConfig;
+  topics: { topic: string | RegExp; fromBeginning?: boolean }[];
+  highWaterMark?: number;
+  transform?: (data: any) => any;
+}
+
 export class ConsumerObjectStream extends Readable {
-  constructor(
-    kafka: Kafka,
-    options: {
-      config?: ConsumerConfig;
-      topics: { topic: string | RegExp; fromBeginning?: boolean }[];
-    },
-  ) {
-    super({ objectMode: true });
+  constructor(kafka: Kafka, options: ConsumerObjectStreamOptions) {
+    super({ objectMode: true, highWaterMark: options.highWaterMark ?? 512 });
     this.kafka = kafka;
-    this.config = options.config;
-    this.topics = options.topics;
+    this.options = options;
     this.init();
   }
 
@@ -20,9 +20,7 @@ export class ConsumerObjectStream extends Readable {
 
   private kafka: Kafka;
 
-  private config?: ConsumerConfig;
-
-  private topics: { topic: string | RegExp; fromBeginning?: boolean }[];
+  private options: ConsumerObjectStreamOptions;
 
   private connected: boolean;
 
@@ -49,9 +47,9 @@ export class ConsumerObjectStream extends Readable {
   private async start() {
     if (!this.connected) {
       this.connected = true;
-      this.consumer = this.kafka.consumer(this.config);
+      this.consumer = this.kafka.consumer(this.options.config);
       await this.consumer.connect();
-      for (const topic of this.topics) {
+      for (const topic of this.options.topics) {
         await this.consumer.subscribe(topic);
       }
       this.consumer.on('consumer.crash', this.onCrash);
@@ -82,7 +80,8 @@ export class ConsumerObjectStream extends Readable {
           if (this.paused) {
             break;
           }
-          const continueToPush = this.push(message);
+          const payload = this.options.transform?.(message) ?? message;
+          const continueToPush = this.push(payload);
           resolveOffset(message.offset);
           await heartbeat();
           if (!continueToPush) {

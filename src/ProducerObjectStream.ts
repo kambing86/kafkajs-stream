@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { CompressionTypes, Kafka, Message, Producer, ProducerConfig } from 'kafkajs';
 import { Writable } from 'stream';
 
@@ -8,11 +7,13 @@ interface ProducerObjectStreamOptions {
   acks?: number;
   timeout?: number;
   compression?: CompressionTypes;
+  highWaterMark?: number;
+  transform?: (data: any) => any;
 }
 
 export class ProducerObjectStream extends Writable {
   constructor(kafka: Kafka, options: ProducerObjectStreamOptions) {
-    super({ objectMode: true });
+    super({ objectMode: true, highWaterMark: options.highWaterMark ?? 512 });
     this.producer = kafka.producer(options.config);
     this.options = options;
     this.connected = false;
@@ -33,7 +34,7 @@ export class ProducerObjectStream extends Writable {
         }
         await this.producer.send({
           topic: this.options.topic,
-          messages: chunks.map(({ chunk }) => chunk),
+          messages: chunks.map(({ chunk }) => this.options.transform?.(chunk) ?? chunk),
           acks: this.options.acks,
           timeout: this.options.timeout,
           compression: this.options.compression,

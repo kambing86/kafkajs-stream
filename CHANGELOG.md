@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/kambing86/kafkajs-stream/compare/v0.0.8...v0.0.9) (2019-12-20)
+
+
+### Bug Fixes
+
+* export object stream ([b78ad5d](https://github.com/kambing86/kafkajs-stream/commit/b78ad5d7301f75806225d0a4c9fce0ddd7104e6b))
+
 ### [0.0.8](https://github.com/kambing86/kafkajs-stream/compare/v0.0.7...v0.0.8) (2019-12-20)
 
 

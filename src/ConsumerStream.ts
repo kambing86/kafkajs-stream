@@ -77,7 +77,6 @@ export class ConsumerStream extends Readable {
         if (this.paused) {
           return;
         }
-        // eslint-disable-next-line no-restricted-syntax
         for (const message of batch.messages) {
           if (this.paused) {
             break;

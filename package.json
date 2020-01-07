@@ -8,7 +8,9 @@
     "prebuild": "rm -rf dist && rm -rf module",
     "build": "tsc --declaration && tsc --declaration -p tsconfig-module.json",
     "build:strict": "tsc --declaration --noImplicitAny && tsc --declaration -p tsconfig-module.json --noImplicitAny",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prettier": "prettier --check 'src/**/*.*'",
+    "prettier:write": "prettier --write 'src/**/*.*'"
   },
   "repository": {
     "type": "git",
@@ -29,11 +31,11 @@
     "kafkajs": "^1.11.0"
   },
   "devDependencies": {
-    "@types/node": "^12.12.17",
+    "@types/node": "^13.1.4",
     "kafkajs": "^1.11.0",
     "prettier": "^1.19.1",
     "standard-version": "^7.0.1",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.4"
   },
   "files": [
     "dist",

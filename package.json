@@ -8,6 +8,7 @@
     "prebuild": "rm -rf dist && rm -rf module",
     "build": "tsc --declaration && tsc --declaration -p tsconfig-module.json",
     "build:strict": "tsc --declaration --noImplicitAny && tsc --declaration -p tsconfig-module.json --noImplicitAny",
+    "prerelease": "yarn build",
     "release": "standard-version",
     "prettier": "prettier --check 'src/**/*.*'",
     "prettier:write": "prettier --write 'src/**/*.*'"

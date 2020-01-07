@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-await-in-loop */
-import { Consumer, ConsumerConfig, Kafka, KafkaMessage } from 'kafkajs';
-import { Readable } from 'stream';
+import { Consumer, ConsumerConfig, Kafka, KafkaMessage } from "kafkajs";
+import { Readable } from "stream";
 
 interface ConsumerObjectStreamOptions {
   config?: ConsumerConfig;
@@ -53,7 +53,7 @@ export class ConsumerObjectStream extends Readable {
       for (const topic of this.options.topics) {
         await this.consumer.subscribe(topic);
       }
-      this.consumer.on('consumer.crash', this.onCrash);
+      this.consumer.on("consumer.crash", this.onCrash);
     }
     if (!this.started) {
       this.started = true;

@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-import { CompressionTypes, Kafka, Producer, ProducerConfig } from 'kafkajs';
-import { Writable } from 'stream';
+import { CompressionTypes, Kafka, Producer, ProducerConfig } from "kafkajs";
+import { Writable } from "stream";
 
 export class ProducerStream extends Writable {
   constructor(
@@ -34,7 +34,7 @@ export class ProducerStream extends Writable {
     if (encoding === undefined) {
       return super.write(value);
     }
-    if (typeof encoding === 'string') {
+    if (typeof encoding === "string") {
       return super.write(value, encoding, callback);
     }
     return super.write(value, encoding);

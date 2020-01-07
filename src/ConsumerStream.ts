@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-await-in-loop */
-import { Consumer, ConsumerConfig, Kafka } from 'kafkajs';
-import { Readable } from 'stream';
+import { Consumer, ConsumerConfig, Kafka } from "kafkajs";
+import { Readable } from "stream";
 
 export class ConsumerStream extends Readable {
   constructor(
@@ -53,7 +53,7 @@ export class ConsumerStream extends Readable {
       this.consumer = this.kafka.consumer(this.config);
       await this.consumer.connect();
       await this.consumer.subscribe(this.topic);
-      this.consumer.on('consumer.crash', this.onCrash);
+      this.consumer.on("consumer.crash", this.onCrash);
     }
     if (!this.started) {
       this.started = true;

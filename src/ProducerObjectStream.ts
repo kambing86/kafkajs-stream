@@ -1,6 +1,12 @@
 /* eslint-disable no-underscore-dangle */
-import { CompressionTypes, Kafka, Message, Producer, ProducerConfig } from 'kafkajs';
-import { Writable } from 'stream';
+import {
+  CompressionTypes,
+  Kafka,
+  Message,
+  Producer,
+  ProducerConfig,
+} from "kafkajs";
+import { Writable } from "stream";
 
 interface ProducerObjectStreamOptions {
   config?: ProducerConfig;
@@ -26,7 +32,10 @@ export class ProducerObjectStream extends Writable {
 
   private connected: boolean;
 
-  _writev(chunks: { chunk: any; encoding: string }[], callback: (error?: Error | null) => void) {
+  _writev(
+    chunks: { chunk: any; encoding: string }[],
+    callback: (error?: Error | null) => void,
+  ) {
     (async () => {
       try {
         if (!this.connected) {
@@ -35,7 +44,9 @@ export class ProducerObjectStream extends Writable {
         }
         await this.producer.send({
           topic: this.options.topic,
-          messages: chunks.map(({ chunk }) => this.options.transform?.(chunk) ?? chunk),
+          messages: chunks.map(
+            ({ chunk }) => this.options.transform?.(chunk) ?? chunk,
+          ),
           acks: this.options.acks,
           timeout: this.options.timeout,
           compression: this.options.compression,

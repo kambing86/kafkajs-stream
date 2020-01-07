@@ -1,0 +1,23 @@
+{
+  "extends": ["tslint-microsoft-contrib/recommended"],
+  "rules": {
+    "export-name": { "severity": "off" },
+    "function-name": { "severity": "off" },
+    "import-name": { "severity": "off" },
+    "no-backbone-get-set-outside-model": { "severity": "off" },
+    "no-relative-imports": { "severity": "off" },
+    "no-useless-files": { "severity": "off" },
+    "ordered-imports": {
+      "options": [
+        {
+          "import-sources-order": "lowercase-first",
+          "named-imports-order": "lowercase-first"
+        }
+      ]
+    },
+    "prefer-type-cast": { "severity": "off" },
+    "use-simple-attributes": { "severity": "off" },
+    "no-suspicious-comment": { "severity": "off" },
+    "no-single-line-block-comment": { "severity": "off" }
+  }
+}

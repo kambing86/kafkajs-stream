@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle, no-await-in-loop */
 import { Consumer, ConsumerConfig, Kafka, KafkaMessage } from 'kafkajs';
 import { Readable } from 'stream';
 
@@ -49,6 +50,7 @@ export class ConsumerObjectStream extends Readable {
       this.connected = true;
       this.consumer = this.kafka.consumer(this.options.config);
       await this.consumer.connect();
+      // eslint-disable-next-line no-restricted-syntax
       for (const topic of this.options.topics) {
         await this.consumer.subscribe(topic);
       }
@@ -76,6 +78,7 @@ export class ConsumerObjectStream extends Readable {
         if (this.paused) {
           return;
         }
+        // eslint-disable-next-line no-restricted-syntax
         for (const message of batch.messages) {
           if (this.paused) {
             break;

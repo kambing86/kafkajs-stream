@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { CompressionTypes, Kafka, Producer, ProducerConfig } from 'kafkajs';
 import { Writable } from 'stream';
 

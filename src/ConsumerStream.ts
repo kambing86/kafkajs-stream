@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle, no-await-in-loop */
 import { Consumer, ConsumerConfig, Kafka } from 'kafkajs';
 import { Readable } from 'stream';
 
@@ -76,6 +77,7 @@ export class ConsumerStream extends Readable {
         if (this.paused) {
           return;
         }
+        // eslint-disable-next-line no-restricted-syntax
         for (const message of batch.messages) {
           if (this.paused) {
             break;

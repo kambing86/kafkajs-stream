@@ -1,11 +1,11 @@
-import { Consumer, ConsumerConfig, Kafka } from 'kafkajs';
+import { Consumer, ConsumerConfig, Kafka, KafkaMessage } from 'kafkajs';
 import { Readable } from 'stream';
 
 interface ConsumerObjectStreamOptions {
   config?: ConsumerConfig;
   topics: { topic: string | RegExp; fromBeginning?: boolean }[];
   highWaterMark?: number;
-  transform?: (data: any) => any;
+  transform?: (data: KafkaMessage) => any;
 }
 
 export class ConsumerObjectStream extends Readable {

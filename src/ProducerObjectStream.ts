@@ -8,7 +8,7 @@ interface ProducerObjectStreamOptions {
   timeout?: number;
   compression?: CompressionTypes;
   highWaterMark?: number;
-  transform?: (data: any) => any;
+  transform?: (data: any) => Message;
 }
 
 export class ProducerObjectStream extends Writable {
@@ -25,7 +25,7 @@ export class ProducerObjectStream extends Writable {
 
   private connected: boolean;
 
-  _writev(chunks: { chunk: Message; encoding: string }[], callback: (error?: Error | null) => void) {
+  _writev(chunks: { chunk: any; encoding: string }[], callback: (error?: Error | null) => void) {
     (async () => {
       try {
         if (!this.connected) {

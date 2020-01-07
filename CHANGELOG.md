@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/kambing86/kafkajs-stream/compare/v0.0.10...v0.0.11) (2020-01-07)
+
+
+### Bug Fixes
+
+* fix type definitions ([ea4d8fd](https://github.com/kambing86/kafkajs-stream/commit/ea4d8fdaa66cd8748442ac955ecbd74bda01fde3))
+
 ### [0.0.10](https://github.com/kambing86/kafkajs-stream/compare/v0.0.9...v0.0.10) (2019-12-20)
 
 

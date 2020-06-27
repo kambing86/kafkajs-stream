@@ -28,7 +28,7 @@ export class ProducerStream extends Writable {
 
   write(
     value: Uint8Array | Buffer | string,
-    encoding?: string | ((error: Error | null | undefined) => void),
+    encoding?: BufferEncoding | ((error: Error | null | undefined) => void),
     callback?: (error: Error | null | undefined) => void,
   ): boolean {
     if (encoding === undefined) {

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle, no-await-in-loop */
-import { Consumer, ConsumerConfig, Kafka } from "kafkajs";
+import { Consumer, ConsumerConfig, ConsumerRunConfig, Kafka } from "kafkajs";
 import { Readable } from "stream";
 
 export class ConsumerStream extends Readable {
@@ -7,12 +7,14 @@ export class ConsumerStream extends Readable {
     kafka: Kafka,
     options: {
       config?: ConsumerConfig;
+      runConfig?: ConsumerRunConfig;
       topic: { topic: string; fromBeginning?: boolean };
     },
   ) {
     super();
     this.kafka = kafka;
     this.config = options.config;
+    this.runConfig = options.runConfig;
     this.topic = options.topic;
     this.init();
   }
@@ -22,6 +24,8 @@ export class ConsumerStream extends Readable {
   private kafka: Kafka;
 
   private config?: ConsumerConfig;
+
+  private runConfig?: ConsumerRunConfig;
 
   private topic: { topic: string; fromBeginning?: boolean };
 
@@ -89,6 +93,7 @@ export class ConsumerStream extends Readable {
           }
         }
       },
+      ...this.runConfig,
     });
   }
 
